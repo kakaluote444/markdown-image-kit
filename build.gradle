@@ -1,22 +1,12 @@
-// mavenCentral() 是一个插件仓库, 导入的插件将会在仓库中寻找并下载
-buildscript {
-    repositories {
-        mavenCentral()
-        maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
-        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
-        maven { url 'http://dl.bintray.com/jetbrains/intellij-plugin-service' }
-    }
-}
-
 plugins {
     id 'org.jetbrains.intellij' version '0.4.8'
 }
 
 repositories {
-    mavenCentral()
     maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
     maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
     maven { url 'http://dl.bintray.com/jetbrains/intellij-plugin-service' }
+    mavenCentral()
 }
 
 // 导入插件
@@ -47,7 +37,7 @@ publishPlugin {
 // 声明依赖使用下面的闭包
 dependencies {
     // <configuration name> <dependencies>
-    // 1. compile: 源代码（src/main/java）编译时的依赖 (最常用)
+    // 1. compile: 源代码（src/main/ConcurrentWeakHashMapjava）编译时的依赖 (最常用)
     // 2. runtime: 源代码（src/main/java）执行时依赖
     // 3. testCompile: 测试代码（src/main/test）编译时的依赖
     // 4. testRuntime: 测试代码（src/main/java）执行时的依赖
@@ -89,6 +79,10 @@ dependencies {
     //    compile (group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '2.11.0') {
     //        exclude group: 'org.slf4j', module: 'slf4j-api'
     //    }
+
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+    }
 
 }
 
